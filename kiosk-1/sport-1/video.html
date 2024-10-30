@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Video</title>
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <img src="../../img/logo-dark.png" class="logo-small">
+            <a href="index.html" class="back-arrow-small"><img src="../../img/elements/larr.png"></a>
+            <p class="sport-title">Streljaštvo i streličarstvo</p>
+            <h1 class="h1-small">Video</h1>
+        </header>
+        <div class="video-wrapper">
+            <div class="video-container">
+                <div class="video-element">
+                    <video id="mainVideo">
+                        <source src="../../assets/streljastvo_strelicarstvo/video/1.mp4" type="video/mp4">
+                        Your browser does not support HTML video.
+                    </video>
+                    <div class="video-controls">
+                        <button id="playButton"><img src="../../img/elements/play.png"></button>
+                        <button id="pauseButton"><img src="../../img/elements/pause.png"></button>
+                        <button id="fullscreenButton"><img src="../../img/elements/fullscreen.png"></button>
+                    </div>
+                </div>
+                <div class="playlist">
+                    <h2>Obaberi video zapis za reprodukciju</h2>
+                    <ul id="videoPlaylist">
+                        <li data-video="../../assets/streljastvo_strelicarstvo/video/1.mp4">Video 1</li>
+                        <li data-video="../../assets/streljastvo_strelicarstvo/video/2.mp4">Video 2</li>
+                        <li data-video="../../assets/streljastvo_strelicarstvo/video/1.mp4">Video 3</li>
+                        <li data-video="../../assets/streljastvo_strelicarstvo/video/2.mp4">Video 4</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="../../js/video.js"></script>
+</body>
+
+</html>
