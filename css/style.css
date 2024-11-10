@@ -573,8 +573,8 @@ header p.sport-title {
 }
 
 .athlete-photo {
-    max-width: 400px;
-    max-height: 200px;
+    max-width: 200px;
+    max-height: 150px;
     border-radius: 15px;
 }
 
