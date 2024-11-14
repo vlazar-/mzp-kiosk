@@ -18,7 +18,7 @@ html {
 }
 
 body {
-    background: url('../img/bg.png');
+    background-image: url('../img/bg.jpg');
     background-size: cover;
     background-position: center;
     height: 100vh;
@@ -246,6 +246,13 @@ header p.sport-title {
     text-align: left;
 }
 
+.catalog-item.portrait h2 {
+    margin-top: 0px;
+    font-size: 22px;
+    font-weight: 700;
+    text-align: left;
+}
+
 .catalog-item p.sub-title {
     margin-top: 18px;
     font-size: 20px;
@@ -388,10 +395,12 @@ header p.sport-title {
     display: none;
 }
 
-.timeline-item img {
+.timeline-item-content > img {
     margin-top: 20px;
-    max-width: 290px;
-    max-height: 380px;
+    width: 314px;
+    height: 248px;
+    object-fit: cover;
+    object-position: 100% 0;
     border-radius: 15px;
 }
 
@@ -441,9 +450,10 @@ header p.sport-title {
     align-items: flex-start;
 }
 
-.timeline-items-overlay-content img {
+.timeline-items-overlay-content img.subject {
     max-width: 1450px;
     max-height: 600px;
+    min-height: 500px;
     height: auto;
     display: block;
     margin-left: auto;
@@ -619,24 +629,54 @@ header p.sport-title {
 
 .video-container {
     display: grid;
+    grid-template-columns: auto;
+    gap: 0px;
+    padding: 0px;
+    padding-top: 10px;
+    height: 740px;
+    overflow-y: hidden;
+    align-items: flex-start;
+}
+
+.video-container-2 {
+    display: grid;
     grid-template-columns: auto auto;
     gap: 0px;
-    padding: 70px;
-    text-align: center;
+    padding: 0px;
+    padding-left: 70px;
+    padding-top: 10px;
     height: 740px;
-    overflow-y: auto;
+    overflow-y: hidden;
     align-items: flex-start;
 }
 
 video {
-    width: 80%;
+    width: 1200px;
     height: auto;
-    margin: auto;
+    margin: 0;
     margin-top: 0;
     border-radius: 25px;
     outline: none;
     background-color: #2e296e;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.video-container-2 video {
+    width: 1044px;
+    height: 631px;
+    height: auto;
+    margin: 0;
+    margin-top: 0;
+    border-radius: 25px;
+    outline: none;
+    background-color: #2e296e;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.video-container-2 h2{
+    text-align: left;
+    padding-left: 60px;
+    margin-bottom: 10px;
 }
 
 .playlist {
@@ -645,7 +685,12 @@ video {
     background-color: #ffffff;
     border-radius: 15px;
     box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.1);
-    width: 600px;
+    width: 700px;
+}
+
+.video-container-2 .playlist{
+    margin-top: 40px;
+    margin-right: 40px;
 }
 
 .playlist h2 {
@@ -696,4 +741,32 @@ video {
 
 .video-controls button:hover {
     background-color: #004b8d;
+}
+
+.video-container h2 {
+    position: absolute;
+    left: 390px;
+    top: 700px;
+    color: #262261;
+    font-family: Quicksand;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.play-button-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    display: none; 
+    z-index: 10;
+}
+
+.play-button-overlay img {
+    width: 200px;
+    height: 200px;
+    opacity: 1;
 }

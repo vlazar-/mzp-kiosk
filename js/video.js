@@ -1,47 +1,30 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const mainVideo = document.getElementById("mainVideo");
-  const playlistItems = document.querySelectorAll("#videoPlaylist li");
-  const playButton = document.getElementById("playButton");
-  const pauseButton = document.getElementById("pauseButton");
-  const fullscreenButton = document.getElementById("fullscreenButton");
+  const video = document.getElementById("mainVideo");
+  const playButtonOverlay = document.getElementById("playButtonOverlay");
 
-  // Functionality for switching video from playlist
-  playlistItems.forEach(item => {
-    item.addEventListener("click", function () {
-      const videoSrc = this.getAttribute("data-video");
-      mainVideo.querySelector("source").src = videoSrc;
-      mainVideo.load();
-      mainVideo.play();
-    });
-  });
+  // Show the play button when the video is paused or ended
+  function showPlayButton() {
+      playButtonOverlay.style.display = "block";
+  }
 
-  // Toggle play/pause on video click
-  mainVideo.addEventListener("click", function () {
-    if (mainVideo.paused) {
-      mainVideo.play();
-    } else {
-      mainVideo.pause();
-    }
-  });
+  // Hide the play button when the video is playing
+  function hidePlayButton() {
+      playButtonOverlay.style.display = "none";
+  }
 
-  // Play button functionality
-  playButton.addEventListener("click", function () {
-    mainVideo.play();
-  });
+  // Initially show the play button
+  showPlayButton();
 
-  // Pause button functionality
-  pauseButton.addEventListener("click", function () {
-    mainVideo.pause();
-  });
+  // Show play button when video is paused or ended
+  video.addEventListener("pause", showPlayButton);
+  video.addEventListener("ended", showPlayButton);
 
-  // Fullscreen button functionality
-  fullscreenButton.addEventListener("click", function () {
-    if (mainVideo.requestFullscreen) {
-      mainVideo.requestFullscreen();
-    } else if (mainVideo.webkitRequestFullscreen) {
-      mainVideo.webkitRequestFullscreen();
-    } else if (mainVideo.msRequestFullscreen) {
-      mainVideo.msRequestFullscreen();
-    }
+  // Hide play button when video is playing
+  video.addEventListener("play", hidePlayButton);
+
+  // Play video when play button is clicked
+  playButtonOverlay.addEventListener("click", function () {
+      video.play();
   });
 });
+
