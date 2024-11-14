@@ -25,7 +25,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 .container {
@@ -188,6 +188,7 @@ header p.sport-title {
     justify-content: space-between;
     padding-top: 71px;
     padding-bottom: 71px;
+    overflow-y: hidden;
     overflow-x: auto;
     align-items: flex-start;
 }
