@@ -231,13 +231,16 @@ header p.sport-title {
     display: none;
 }
 
-.catalog-item img {
+.catalog-item.landscape > img {
     max-width: 400px;
     max-height: 200px;
 }
 
-.catalog-item.portrait img {
-    max-width: 200px;
+.catalog-item.portrait > img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
 }
 
 .catalog-item h2 {
