@@ -387,6 +387,10 @@ header p.sport-title {
     text-align: center;
 }
 
+.wide {
+    width: 650px;
+}
+
 .timeline-item:first-child {
     margin-left: 122px;
 }
