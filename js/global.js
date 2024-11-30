@@ -1,6 +1,6 @@
 let inactivityTime = function () {
     let timer;
-    const inactivityLimit = 10 * 60 * 1000; // 10 minutes in milliseconds
+    const inactivityLimit = 15 * 60 * 1000; // 15 minutes in milliseconds
 
     // Reset the timer when there's activity
     function resetTimer() {
