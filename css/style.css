@@ -563,7 +563,7 @@ header p.sport-title {
 }
 
 .athlete-items {
-    width: 49%;
+    width: 47%;
     display: flex;
     background-color: #262261;
     color: #ffffff;
@@ -575,6 +575,7 @@ header p.sport-title {
     box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.1);
     text-align: left;
     word-wrap: break-word;
+    margin-bottom: 30px;
 }
 
 .athlete-items::before {

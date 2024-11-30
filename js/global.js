@@ -33,3 +33,27 @@ let inactivityTime = function () {
 
 // Run the inactivity timer function
 inactivityTime();
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Get the current page URL
+    const currentUrl = window.location.href;
+
+    // Check if the URL ends with 'sportasi.html' or 'klubovi.html'
+    if (currentUrl.endsWith('sportasi.html') || currentUrl.endsWith('klubovi.html')) {
+        // Dynamically load Masonry.js from local file
+        const script = document.createElement('script');
+        script.src = "../../js/masonry.js"; // Adjust the path based on your project structure
+        script.onload = function () {
+            // Initialize Masonry after the script is loaded
+            var grid = document.querySelector('.athletes');
+            if (grid) {
+                new Masonry(grid, {
+                    itemSelector: '.athlete-items',
+                    columnWidth: 610,
+                    percentPosition: true
+                });
+            }
+        };
+        document.body.appendChild(script);
+    }
+});
