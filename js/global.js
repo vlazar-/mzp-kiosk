@@ -1,6 +1,6 @@
 let inactivityTime = function () {
     let timer;
-    const inactivityLimit = 10 * 1 * 1000; // 10 seconds in milliseconds
+    const inactivityLimit = 20 * 60 * 1000; // 20 minutes in milliseconds
 
     function resetTimer() {
         clearTimeout(timer);
