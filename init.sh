@@ -1,7 +1,5 @@
 sudo apt install ydotool
 
-pcmanfm --set-wallpaper="img/splash.png"
-
 sudo chmod +x run-kiosk.sh
 sudo chmod +x hide-cursor.sh
 
