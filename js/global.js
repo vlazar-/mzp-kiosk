@@ -1,21 +1,35 @@
 let inactivityTime = function () {
     let timer;
-    const inactivityLimit = 15 * 60 * 1000; // 15 minutes in milliseconds
+    const inactivityLimit = 10 * 1 * 1000; // 10 seconds in milliseconds
 
     // Reset the timer when there's activity
     function resetTimer() {
         clearTimeout(timer);
         timer = setTimeout(() => {
-            // Extract the current URL to find the "kiosk" base path
             const currentUrl = window.location.href;
-            const urlParts = currentUrl.split('/');
-            // Assume the base kiosk directory is always at the 4th position: http://localhost:8000/kiosk-x/
-            const kioskBase = urlParts.slice(0, 4).join('/');
-            // Redirect to the "index.html" at that level
-            const redirectUrl = `${kioskBase}/index.html`;
 
-            // Redirect the user to the dynamically constructed home page URL
-            window.location.href = redirectUrl;
+            let redirectUrl;
+            if (currentUrl.startsWith('file:///')) {
+                // Handle local file system (file:// protocol)
+                const urlParts = currentUrl.split('/');
+                // Remove everything after the last '/' to get the base directory
+                urlParts.pop();
+                redirectUrl = `${urlParts.join('/')}/index.html`;
+            } else {
+                // Handle hosted server (http:// or https:// protocol)
+                const urlParts = currentUrl.split('/');
+                // Assume the base kiosk directory is always at the 4th position: http://localhost:8000/kiosk-x/
+                const kioskBase = urlParts.slice(0, 4).join('/');
+                redirectUrl = `${kioskBase}/index.html`;
+            }
+
+            if (currentUrl.endsWith('index.html') || currentUrl === redirectUrl) {
+                // If already on index.html, simply reload the page
+                window.location.reload();
+            } else {
+                // Redirect to index.html
+                window.location.href = redirectUrl;
+            }
         }, inactivityLimit);
     }
 
@@ -33,6 +47,8 @@ let inactivityTime = function () {
 
 // Run the inactivity timer function
 inactivityTime();
+
+
 
 document.addEventListener("DOMContentLoaded", function () {
     // Get the current page URL
