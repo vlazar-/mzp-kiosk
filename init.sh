@@ -5,8 +5,6 @@ pcmanfm --set-wallpaper="img/splash.png"
 sudo chmod +x run-kiosk.sh
 sudo chmod +x hide-cursor.sh
 
-unalias cp
-
 sudo mv /usr/share/plymouth/themes/pix/splash.png /usr/share/plymouth/themes/pix/splash-default.png
 sudo cp -f img/splash.png /usr/share/plymouth/themes/pix
 
