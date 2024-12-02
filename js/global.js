@@ -1,12 +1,20 @@
 let inactivityTime = function () {
     let timer;
     const inactivityLimit = 10 * 1 * 1000; // 10 seconds in milliseconds
+    let reloadedDuringLastInterval = false; // Flag to track reload status
 
     // Reset the timer when there's activity
     function resetTimer() {
         clearTimeout(timer);
+        reloadedDuringLastInterval = false; // Reset the flag on activity
         timer = setTimeout(() => {
             const currentUrl = window.location.href;
+
+            // If already reloaded during the last interval, do nothing
+            if (reloadedDuringLastInterval) {
+                console.log("Skipping reload since the page was already reloaded due to inactivity.");
+                return;
+            }
 
             let redirectUrl;
             if (currentUrl.startsWith('file:///')) {
@@ -17,19 +25,27 @@ let inactivityTime = function () {
                 redirectUrl = `${urlParts.join('/')}/index.html`;
             } else {
                 // Handle hosted server (http:// or https:// protocol)
-                const urlParts = currentUrl.split('/');
-                // Assume the base kiosk directory is always at the 4th position: http://localhost:8000/kiosk-x/
-                const kioskBase = urlParts.slice(0, 4).join('/');
-                redirectUrl = `${kioskBase}/index.html`;
+                const regex = /\/kiosk-\d+\/sport-\d+\/index\.html$/; // Match URLs ending with kiosk-x/sport-x/index.html
+                if (regex.test(currentUrl)) {
+                    // Redirect to kiosk-x/index.html
+                    redirectUrl = currentUrl.replace(/\/sport-\d+\/index\.html$/, '/index.html');
+                } else {
+                    const urlParts = currentUrl.split('/');
+                    // Assume the base kiosk directory is always at the 4th position: http://localhost:8000/kiosk-x/
+                    const kioskBase = urlParts.slice(0, 4).join('/');
+                    redirectUrl = `${kioskBase}/index.html`;
+                }
             }
 
-            if (currentUrl.endsWith('index.html') || currentUrl === redirectUrl) {
-                // If already on index.html, simply reload the page
-                window.location.reload();
+            // Redirect or reload the page
+            if (currentUrl === redirectUrl || currentUrl.endsWith('index.html')) {
+                window.location.reload(); // Reload the current page
             } else {
-                // Redirect to index.html
-                window.location.href = redirectUrl;
+                window.location.href = redirectUrl; // Redirect to the home page
             }
+
+            // Mark the page as reloaded
+            reloadedDuringLastInterval = true;
         }, inactivityLimit);
     }
 
